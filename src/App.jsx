@@ -8,7 +8,6 @@ import Paiza from "./Paiza";
 function App() {
   return (
     <>
-      {/* <Paiza /> */}
       <Paiza />
     </>
   );
