@@ -16,13 +16,19 @@
     "@codemirror/lang-python": "^6.1.6",
     "@codemirror/state": "^6.4.1",
     "@codemirror/view": "^6.35.0",
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
+    "@mui/material": "^6.1.9",
     "@uiw/codemirror-theme-dracula": "^4.23.6",
     "@uiw/codemirror-theme-xcode": "^4.23.6",
     "@uiw/react-codemirror": "^4.23.6",
     "axios": "^1.7.8",
     "codemirror": "^6.0.1",
+    "destr": "^2.0.3",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.0.1",
+    "reconnecting-websocket": "^4.4.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",

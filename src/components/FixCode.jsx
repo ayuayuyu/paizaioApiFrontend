@@ -1,11 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CodeEditor from "./CodeEditor";
-const apiUrl = import.meta.env.VITE_API_URL;
+import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
+import GetStatus from "./GetStatus";
+const apiUrl = import.meta.env.VITE_API_URL_1;
 
-const Paiza = () => {
-  const [code, setCode] = useState(""); // ユーザーが入力するコード
+const FixCode = () => {
+  const location = useLocation();
+  const [code, setCode] = useState(""); // 初期化を遅延
   const [language, setLanguage] = useState("c"); // プログラミング言語
   const [output, setOutput] = useState(""); // 実行結果
+  const [searchParams] = useSearchParams();
+  const roomId = searchParams.get("roomId") || "";
+  const player = searchParams.get("player") || "";
+  //今のステータスの確認のステータス
+  const getStatus = "fix";
+  //次の状態にするためにhttp通信で送るステータス
+  const sendStatus = "result";
+
+  useEffect(() => {
+    setCode(location.state);
+  }, [location.state]);
+
+  console.log(`locationCode: ${location.state}`);
 
   const handleRunCode = async () => {
     const proxyUrl = `${apiUrl}/run`; // FastAPIのURL
@@ -64,21 +80,15 @@ const Paiza = () => {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1>オンラインコードエディタ</h1>
-      <CodeEditor setCode={setCode} language={language} />
-      {/* <textarea
-        value={code}
-        onChange={(e) => setCode(e.target.value)}
-        rows={10}
-        cols={50}
-        placeholder="ここにコードを入力してください..."
-      /> */}
+      <h1>FixCode</h1>
+      <CodeEditor setCode={setCode} code={code} language={language} />
       <br />
       <select value={language} onChange={(e) => setLanguage(e.target.value)}>
         <option value="c">C</option>
         <option value="python3">Python 3</option>
         <option value="javascript">JavaScript</option>
       </select>
+      <GetStatus roomId={roomId} status={getStatus} />
       <br />
       <button onClick={handleRunCode}>実行</button>
       <h2>結果</h2>
@@ -87,4 +97,4 @@ const Paiza = () => {
   );
 };
 
-export default Paiza;
+export default FixCode;

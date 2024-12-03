@@ -5,10 +5,17 @@ import { dracula } from "@uiw/codemirror-theme-dracula";
 import ReactCodeMirror from "@uiw/react-codemirror";
 import { useCallback, useEffect, useState } from "react";
 
-function CodeEditor({ setCode, language }) {
-  const [value, setValue] = useState(
-    '#include <stdio.h>\nint main() {// メッセージを出力printf("Hello, World!");\nprintf("簡単なC言語プログラムです");\n// 変数を宣言して値を出力\nint number = 42;\nprintf("数値: %d", number);\nreturn 0;}'
-  );
+function CodeEditor({ setCode, code, language }) {
+  const [value, setValue] = useState("");
+  useEffect(() => {
+    if (code == null) {
+      setValue(
+        '#include <stdio.h>\nint main() {// メッセージを出力printf("Hello, World!");\n  printf("簡単なC言語プログラムです");\n  //変数を宣言して値を出力\n  int number = 42;\n  printf("数値: %d", number);\n return 0;\n}'
+      );
+    } else {
+      setValue(code);
+    }
+  }, [code]);
 
   const onChange = useCallback((val) => {
     setValue(val);
