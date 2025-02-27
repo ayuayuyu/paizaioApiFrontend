@@ -1,6 +1,3 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 // import Paiza from "./Paiza";\
@@ -9,6 +6,8 @@ import GetCode from "./components/GetCode";
 import Room from "./components/Room";
 import Home from "./components/Home";
 import Explanation from "./components/Explanation";
+import TestFixCode from "./components/TestFixCode";
+import TestSeikai from "./components/TestSeikai";
 function App() {
   return (
     <BrowserRouter>
@@ -18,6 +17,8 @@ function App() {
         <Route path={`/Room`} element={<Room />} />
         <Route path={`/Get`} element={<GetCode />} />
         <Route path={`/Fix`} element={<FixCode />} />
+        <Route path={`/Test`} element={<TestFixCode />} />
+        <Route path={`/Tests`} element={<TestSeikai />} />
       </Routes>
     </BrowserRouter>
   );
